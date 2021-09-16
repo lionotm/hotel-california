@@ -26,10 +26,10 @@ function App() {
         <Router>
           <Layout>
             <Switch>
-              <Route exact path='/'>
+              <Route exact path={process.env.PUBLIC_URL + '/'}>
                 <DisplayHomePage />
               </Route>
-              <Route path='/addcustomer'>
+              <Route path={process.env.PUBLIC_URL + '/addcustomer'}>
                 <AddCustomer />
               </Route>
             </Switch>
