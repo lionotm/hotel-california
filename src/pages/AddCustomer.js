@@ -32,6 +32,7 @@ export default function AddCustomer() {
     e.preventDefault()
     console.log('submitted')
   }
+  //Todo: assign a randomcolor during card creation and read from customer metadata
   //todo: add error prop & helperText for validation
   return (
     <Container className={classes.container}>

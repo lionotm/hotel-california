@@ -23,6 +23,8 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 
+const avatarColors = [pink[500], lime[500], indigo[500], orange[500], teal[500]]
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -45,28 +47,31 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '68%',
   },
   avatar: {
-    backgroundColor: (colors) => {
-      return colors[Math.floor(Math.random() * colors.length)]
+    backgroundColor: (color) => {
+      return avatarColors[color]
     },
   },
 }))
 
 function createData(key, value) {
+  if (!value) value = '-'
   return { key, value }
 }
 
-const rows = [
-  createData('Time Start', 159),
-  createData('Time End', 237),
-  createData('Waiting Time', 262),
-  createData('Ticket no.', 305),
-]
-
-export default function RecipeReviewCard() {
-  //Todo: assign a randomcolor during card creation and read from customer metadata
-  const colors = [pink[500], lime[500], indigo[500], orange[500], teal[500]]
-  const classes = useStyles(colors)
+export default function CustomerCard({ customer, avatarColor }) {
+  const classes = useStyles(avatarColor)
   const [expanded, setExpanded] = React.useState(false)
+  const { firstName, lastName, startTime, endTime, contactNumber, notes, ticketNumber } = customer
+  const startDate = new Date(startTime)
+  const endDate = endTime ? new Date(endTime) : new Date()
+  const waitingTime = Math.round((endDate - startDate) / 1000 / 60)
+
+  const rows = [
+    createData('Start Time', startDate.toLocaleString()),
+    createData('End Time', endTime ? endDate.toLocaleString() : ''),
+    createData('Waiting Time', waitingTime + ' mins'),
+    createData('Ticket no.', ticketNumber),
+  ]
 
   const handleExpandClick = () => {
     setExpanded(!expanded)
@@ -81,20 +86,20 @@ export default function RecipeReviewCard() {
           </Avatar>
         }
         action={<DeleteCustomer />}
-        title='ABC 123'
-        subheader='Date'
+        title={firstName + ' ' + lastName}
+        subheader={startDate.toLocaleString()}
       />
       <CardContent style={{ paddingBottom: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
           <ContactPhoneIcon style={{ marginLeft: 7 }} />
           <Typography variant='body2' style={{ marginLeft: 24 }}>
-            Phone Number
+            {contactNumber}
           </Typography>
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <NotesIcon style={{ marginLeft: 7 }} />
           <Typography variant='body2' style={{ marginLeft: 24 }}>
-            Notes...
+            {notes}
           </Typography>
         </div>
       </CardContent>
@@ -125,7 +130,10 @@ export default function RecipeReviewCard() {
               </TableHead>
               <TableBody>
                 {rows.map((row) => (
-                  <TableRow key={row.key} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableRow
+                    key={row.key}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
                     <TableCell component='th' scope='row'>
                       {row.key}
                     </TableCell>

@@ -89,10 +89,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+// add search
+
 export default function Layout({ children }) {
   const classes = useStyles()
   const theme = useTheme()
   const history = useHistory()
+
   const [open, setOpen] = React.useState(false)
 
   const handleDrawerOpen = () => {
