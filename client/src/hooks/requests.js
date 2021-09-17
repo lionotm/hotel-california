@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000'
+const API_URL = 'v1'
 
 async function httpGetWaitlist() {
   const response = await fetch(`${API_URL}/waitlist`)

@@ -15,9 +15,11 @@ app.use(
 
 app.use(morgan('tiny'))
 app.use(express.json())
-app.use(waitlistRouter)
-app.use(express.static(path.join(__dirname, '..', 'public')))
 
+// api version 1
+app.use('/v1', waitlistRouter)
+
+app.use(express.static(path.join(__dirname, '..', 'public')))
 app.get('/*', (req, res) => {
   res.sendFile(express.static(path.join(__dirname, '..', 'public', 'index.html')))
 })
