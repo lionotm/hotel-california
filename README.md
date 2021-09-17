@@ -9,7 +9,8 @@ npm install
 npm run deploy
 ```
 
-To run with Docker 🐳 (if you have it on your machine)
+To run with Docker 🐳 
+Please check if you have Docker installed locally
 
 ```bash
 docker build . -t hotel-cali-tutorial-3
