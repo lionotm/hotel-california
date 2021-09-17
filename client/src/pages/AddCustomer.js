@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import TextField from '@material-ui/core/TextField'
@@ -32,6 +32,7 @@ export default function AddCustomer() {
     e.preventDefault()
     console.log('submitted')
   }
+  //Todo: assign a randomcolor during card creation and read from customer metadata
   //todo: add error prop & helperText for validation
   return (
     <Container className={classes.container}>

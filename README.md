@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# 🏝 Hotel California 🏨 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## To get started
 
-## Available Scripts
+To run this locally 💻
 
-In the project directory, you can run:
+```bash
+npm install
+npm run deploy
+```
 
-### `npm start`
+To run with Docker 🐳 (if you have it on your machine)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+docker build . -t hotel-cali-tutorial-3
+docker run -p 8000:8000 hotel-cali-tutorial-3
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Requirements
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Disable all functionalities that require a button press. (e.g., Just remove the buttons)
+  - Delete button integrated on customer card (prefer this over a form)
+  - Submit button as a typical form to input customer details
+- Create the following React components: displayHomepage, addCustomer, deleteCustomer, displayCustomers, displayFreeSlots. You can create more components if you need. For example, you may want a dummy top level component that contains the aforementioned components. You may also want a component for building the table. (refer Chapter 3 of textbook)
+  - Found in `client/src/components` and `client/src/pages`
+- Unconditionally display all the components all the time (i.e., no button press).
+  - All available customers in waitlist are displayed in home screen.
+- Use hard-coded customer information. This means your addCustomer and deleteCustomer logic will not work yet. Also, the number of free slots will remain constant. You will code the rest of the logic in Tutorial 4.
+  - Hardcoded 2 customers in `server/src/models/waitlist.model.js`
+- Testing: You need at least 2-3 customer details (which you hard coded) to be displayed on the web application. There is nothing else to check at this point. But remember, “Rome wasn’t built in a day.” We will test the rest of the functionality in Tutorial 4.

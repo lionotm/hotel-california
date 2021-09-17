@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
 import DisplayFreeSlots from './DisplayFreeSlots'
@@ -89,10 +89,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+// add search
+
 export default function Layout({ children }) {
   const classes = useStyles()
   const theme = useTheme()
   const history = useHistory()
+
   const [open, setOpen] = React.useState(false)
 
   const handleDrawerOpen = () => {
