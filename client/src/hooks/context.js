@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { httpGetWaitlist } from './requests'
+import { httpGetWaitlist, httpAddCustomer, httpRemoveCustomer } from './requests'
 
 const WaitlistContext = React.createContext()
 WaitlistContext.displayName = 'WaitlistContext'
@@ -16,7 +16,23 @@ function WaitlistProvider({ children }) {
     getWaitlist()
   }, [getWaitlist])
 
-  const value = [waitlist, setWaitlist]
+  const addCustomer = React.useCallback(
+    async (formData) => {
+      await httpAddCustomer(formData)
+      getWaitlist()
+    },
+    [getWaitlist]
+  )
+
+  const removeCustomer = React.useCallback(
+    async (ticketNumber) => {
+      await httpRemoveCustomer(ticketNumber)
+      getWaitlist()
+    },
+    [getWaitlist]
+  )
+
+  const value = { waitlist, setWaitlist, addCustomer, removeCustomer }
 
   return <WaitlistContext.Provider value={value}>{children}</WaitlistContext.Provider>
 }

@@ -5,7 +5,7 @@ import DisplayCustomers from '../components/DisplayCustomers'
 import { useWaitlist } from '../hooks/context'
 
 export default function DisplayHomePage() {
-  const [waitlist] = useWaitlist()
+  const { waitlist } = useWaitlist()
 
   return (
     <Container>

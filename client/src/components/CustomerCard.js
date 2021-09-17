@@ -58,10 +58,14 @@ function createData(key, value) {
   return { key, value }
 }
 
-export default function CustomerCard({ customer, avatarColor }) {
+export default function CustomerCard({ customer }) {
+  const { firstName, lastName, contactNumber, notes, metaData } = customer
+  const { startTime, endTime, ticketNumber, avatarColor } = metaData
+
   const classes = useStyles(avatarColor)
   const [expanded, setExpanded] = React.useState(false)
-  const { firstName, lastName, startTime, endTime, contactNumber, notes, ticketNumber } = customer
+
+  const avatarInitial = firstName.toString()[0].toUpperCase()
   const startDate = new Date(startTime)
   const endDate = endTime ? new Date(endTime) : new Date()
   const waitingTime = Math.round((endDate - startDate) / 1000 / 60)
@@ -81,11 +85,11 @@ export default function CustomerCard({ customer, avatarColor }) {
     <Card className={classes.root} elevation={1}>
       <CardHeader
         avatar={
-          <Avatar aria-label='recipe' className={classes.avatar}>
-            R
+          <Avatar aria-label='customer' className={classes.avatar}>
+            {avatarInitial}
           </Avatar>
         }
-        action={<DeleteCustomer />}
+        action={<DeleteCustomer ticketNumber={ticketNumber} />}
         title={firstName + ' ' + lastName}
         subheader={startDate.toLocaleString()}
       />
@@ -124,7 +128,7 @@ export default function CustomerCard({ customer, avatarColor }) {
             <Table sx={{ minWidth: 650 }} aria-label='simple table'>
               <TableHead>
                 <TableRow>
-                  <TableCell>Metric</TableCell>
+                  <TableCell>Metadata</TableCell>
                   <TableCell align='right'>Value</TableCell>
                 </TableRow>
               </TableHead>
