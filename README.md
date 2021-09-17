@@ -10,6 +10,7 @@ npm run deploy
 ```
 
 To run with Docker 🐳 
+
 Please check if you have Docker installed locally
 
 ```bash
