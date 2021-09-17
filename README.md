@@ -1,4 +1,4 @@
-# Hotel California
+# 🏝 Hotel California 🏨 
 
 ## To get started
 
