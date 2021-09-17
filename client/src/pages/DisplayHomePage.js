@@ -1,8 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import DisplayCustomers from '../components/DisplayCustomers'
-import { useWaitlist } from '../context'
+import { useWaitlist } from '../hooks/context'
 
 export default function DisplayHomePage() {
   const [waitlist] = useWaitlist()

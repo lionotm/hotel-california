@@ -1,9 +1,9 @@
-import React from 'react'
+import * as React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import DisplayHomePage from './pages/DisplayHomePage'
 import AddCustomer from './pages/AddCustomer'
-import { WaitlistProvider } from './context'
+import { WaitlistProvider } from './hooks/context'
 
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { grey, red } from '@material-ui/core/colors'
@@ -26,10 +26,10 @@ function App() {
         <Router>
           <Layout>
             <Switch>
-              <Route exact path={process.env.PUBLIC_URL + '/'}>
+              <Route exact path='/'>
                 <DisplayHomePage />
               </Route>
-              <Route path={process.env.PUBLIC_URL + '/addcustomer'}>
+              <Route path='/addcustomer'>
                 <AddCustomer />
               </Route>
             </Switch>

@@ -1,5 +1,5 @@
-import React from 'react'
-import { useWaitlist } from '../context'
+import * as React from 'react'
+import { useWaitlist } from '../hooks/context'
 
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'

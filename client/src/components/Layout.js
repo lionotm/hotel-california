@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
 import DisplayFreeSlots from './DisplayFreeSlots'
@@ -110,12 +110,12 @@ export default function Layout({ children }) {
     {
       title: 'Dashboard',
       icon: <DashboardIcon />,
-      path: process.env.PUBLIC_URL + '/',
+      path: '/',
     },
     {
       title: 'Add Customer',
       icon: <AddCircleIcon />,
-      path: process.env.PUBLIC_URL + '/addcustomer',
+      path: '/addcustomer',
     },
   ]
 
