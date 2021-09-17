@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hotel California is the best hotel in California." />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="./images/hotel.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Mulish:wght@400;700&&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Hotel California Waitlist System</title>
+  </head>
+  <body>
+    <header class="main-head">
+      <nav>
+        <h1 id="logo">Hotel California</h1>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#waitlist">Waitlist</a></li>
+          <li><a href="#history">History</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="home" id="home">
+        <h2>WaitList.</h2>
+        <h3>Welcome to the waitlist tracking system!</h3>
+        <br />
+        <p style="padding: 1rem">There are...</p>
+        <h4 class="no-waitlist">0 people waiting</h4>
+        <h4 class="no-freeslots">25 free slots available</h4>
+      </section>
+
+      <section class="waitlist" id="waitlist">
+        <div class="error"></div>
+        <h3 class="waitlist-header">Add a Customer to the WaitList.</h3>
+        <h4 class="no-freeslots">25 free slots available</h4>
+        <button class="waitlist-show">Show List</button>
+
+        <form class="waitlist-form">
+          <input type="text" class="waitlist-input" id="waitlist-input" placeholder="Enter a customer name" />
+          <button class="waitlist-button" type="submit">+</button>
+        </form>
+        <div class="waitlist-container">
+          <ul class="waitlist-list"></ul>
+        </div>
+      </section>
+
+      <section class="history" id="history">
+        <h3 class="history-header">Search for a Completed Ticket.</h3>
+        <form autocomplete="off">
+          <div class="autocomplete">
+            <input id="history-input" type="text" name="history" placeholder="Search for a past customer" />
+          </div>
+          <button class="history-searchbtn" type="submit">Search</button>
+          <button class="history-clearbtn">Clear All History</button>
+        </form>
+        <div id="history-resultcontainer"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-wrapper">
+        <h6>Hotel California &copy;</h6>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
