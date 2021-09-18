@@ -1,7 +1,12 @@
 # 🏝 Hotel California 🏨
 
+- Waitlist system designed to queue and dequeue customers
+- Client server architecture
+- Can be hosted in the cloud with containers.
+
 Client - React with Material UI  
 Server - Node.js with Express
+
 
 ## To get started
 
@@ -20,4 +25,6 @@ docker build . -t hotel-california
 docker run -p 8000:8000 hotel-california
 ```
 
+## To add
 
+MongoDB for persistent storage
