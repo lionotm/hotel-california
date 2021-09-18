@@ -20,6 +20,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
+import HistoryIcon from '@material-ui/icons/History'
 
 const drawerWidth = 240
 
@@ -116,6 +117,11 @@ export default function Layout({ children }) {
       title: 'Add Customer',
       icon: <AddCircleIcon />,
       path: '/addcustomer',
+    },
+    {
+      title: 'History',
+      icon: <HistoryIcon />,
+      path: '/history',
     },
   ]
 

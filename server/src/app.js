@@ -3,7 +3,7 @@ const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
 
-const waitlistRouter = require('./routes/waitlist/waitlist.router')
+const api = require('./routes/api')
 
 const app = express()
 
@@ -17,7 +17,7 @@ app.use(morgan('tiny'))
 app.use(express.json())
 
 // api version 1
-app.use('/v1', waitlistRouter)
+app.use('/v1', api)
 
 app.use(express.static(path.join(__dirname, '..', 'public')))
 app.get('/*', (req, res) => {
