@@ -1,5 +1,8 @@
 # 🏝 Hotel California 🏨
 
+Client - React with Material UI
+Server - Node.js with Express
+
 ## To get started
 
 To run this locally 💻
