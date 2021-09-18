@@ -1,4 +1,4 @@
-# 🏝 Hotel California 🏨 
+# 🏝 Hotel California 🏨
 
 ## To get started
 
@@ -16,4 +16,3 @@ Please check if you have Docker installed locally
 docker build . -t hotel-california
 docker run -p 8000:8000 hotel-california
 ```
-

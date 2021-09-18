@@ -1,20 +1,26 @@
 import * as React from 'react'
-import { httpGetWaitlist, httpAddCustomer, httpRemoveCustomer } from './requests'
+import {
+  httpGetWaitlist,
+  httpAddCustomer,
+  httpRemoveCustomer,
+  httpGetHistory,
+  httpRemoveHistory,
+} from './requests'
+
+import { pink, lime, indigo, orange, teal } from '@material-ui/core/colors'
+const avatarColors = [pink[500], lime[500], indigo[500], orange[500], teal[500]]
 
 const WaitlistContext = React.createContext()
 WaitlistContext.displayName = 'WaitlistContext'
 
 function WaitlistProvider({ children }) {
   const [waitlist, setWaitlist] = React.useState([])
+  const [history, setHistory] = React.useState([])
 
   const getWaitlist = React.useCallback(async () => {
     const fetchedWaitlist = await httpGetWaitlist()
     setWaitlist(fetchedWaitlist)
   }, [])
-
-  React.useEffect(() => {
-    getWaitlist()
-  }, [getWaitlist])
 
   const addCustomer = React.useCallback(
     async (formData) => {
@@ -32,7 +38,28 @@ function WaitlistProvider({ children }) {
     [getWaitlist]
   )
 
-  const value = { waitlist, setWaitlist, addCustomer, removeCustomer }
+  const getHistory = React.useCallback(async () => {
+    const fetchedHistory = await httpGetHistory()
+    setHistory(fetchedHistory)
+  }, [])
+
+  const removeHistory = React.useCallback(
+    async (ticketNumbers) => {
+      await httpRemoveHistory(ticketNumbers)
+      getHistory()
+    },
+    [getHistory]
+  )
+
+  React.useEffect(() => {
+    getWaitlist()
+  }, [getWaitlist])
+
+  React.useEffect(() => {
+    getHistory()
+  }, [getHistory, waitlist])
+
+  const value = { waitlist, history, addCustomer, removeCustomer, removeHistory }
 
   return <WaitlistContext.Provider value={value}>{children}</WaitlistContext.Provider>
 }
@@ -45,4 +72,4 @@ function useWaitlist() {
   return context
 }
 
-export { WaitlistProvider, useWaitlist }
+export { WaitlistProvider, useWaitlist, avatarColors }

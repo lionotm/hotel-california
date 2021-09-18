@@ -77,7 +77,11 @@ export default function AddCustomer() {
 
     formData.metaData.avatarColor = generateAvatarColor()
     addCustomer(formData)
+
+    // re-initialise
     setFormData(initialForm)
+    setIsFilled(initialFill)
+    setError(false)
   }
 
   const handleChange = (e) => {

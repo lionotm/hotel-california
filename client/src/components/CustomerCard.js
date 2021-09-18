@@ -1,6 +1,7 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import DeleteCustomer from './DeleteCustomer'
+import { avatarColors } from '../hooks/context'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -11,10 +12,11 @@ import Collapse from '@material-ui/core/Collapse'
 import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import { pink, lime, indigo, orange, teal, grey } from '@material-ui/core/colors'
+import { grey } from '@material-ui/core/colors'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone'
 import NotesIcon from '@material-ui/icons/Notes'
+import TimerIcon from '@material-ui/icons/Timer'
 
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -22,8 +24,6 @@ import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-
-const avatarColors = [pink[500], lime[500], indigo[500], orange[500], teal[500]]
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,7 +73,6 @@ export default function CustomerCard({ customer }) {
   const rows = [
     createData('Start Time', startDate.toLocaleString()),
     createData('End Time', endTime ? endDate.toLocaleString() : ''),
-    createData('Waiting Time', waitingTime + ' mins'),
     createData('Ticket no.', ticketNumber),
   ]
 
@@ -89,7 +88,13 @@ export default function CustomerCard({ customer }) {
             {avatarInitial}
           </Avatar>
         }
-        action={<DeleteCustomer ticketNumber={ticketNumber} />}
+        action={
+          <DeleteCustomer
+            ticketNumber={ticketNumber}
+            waitingTime={waitingTime}
+            firstName={firstName}
+          />
+        }
         title={firstName + ' ' + lastName}
         subheader={startDate.toLocaleString()}
       />
@@ -100,10 +105,19 @@ export default function CustomerCard({ customer }) {
             {contactNumber}
           </Typography>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <NotesIcon style={{ marginLeft: 7 }} />
+        <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
+          <TimerIcon style={{ marginLeft: 7 }} />
           <Typography variant='body2' style={{ marginLeft: 24 }}>
-            {notes}
+            Waited for {waitingTime} mins
+          </Typography>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <NotesIcon style={{ marginLeft: 7, alignSelf: 'flex-start' }} />
+          <Typography
+            variant='body2'
+            style={{ marginLeft: 24, marginRight: 40, wordBreak: 'break-word' }}
+          >
+            {notes || '-'}
           </Typography>
         </div>
       </CardContent>
@@ -141,7 +155,9 @@ export default function CustomerCard({ customer }) {
                     <TableCell component='th' scope='row'>
                       {row.key}
                     </TableCell>
-                    <TableCell align='right'>{row.value}</TableCell>
+                    <TableCell align='right' style={{ width: 200 }}>
+                      {row.value}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

@@ -1,15 +1,15 @@
 import * as React from 'react'
 import Masonry from 'react-masonry-css'
 import CustomerCard from '../components/CustomerCard'
-import { useWaitlist } from '../hooks/context'
 
-export default function DisplayCustomers() {
-  const { waitlist } = useWaitlist()
-
+export default function DisplayCustomers({ waitlist }) {
   const handleDelete = () => {}
 
   const breakpoints = {
-    default: 3,
+    default: 6,
+    2500: 5,
+    1900: 4,
+    1500: 3,
     1100: 2,
     700: 1,
   }

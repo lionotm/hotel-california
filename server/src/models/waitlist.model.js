@@ -14,6 +14,9 @@ const waitlist = [
       ticketNumber: 999999999,
     },
   },
+]
+
+const history = [
   {
     firstName: 'Sponge',
     lastName: 'Bob',
@@ -24,6 +27,7 @@ const waitlist = [
       startTime: 'Fri Sep 19 2021 00:00:00 GMT+0800',
       endTime: 'Fri Sep 19 2021 02:00:00 GMT+0800',
       ticketNumber: 1111111111,
+      deleted: false,
     },
   },
 ]
@@ -38,11 +42,26 @@ function saveCustomer(customerData) {
   waitlist.push(customerData)
 }
 
-function existsWithTicketNumber(ticketNumber) {
-  for (const customer of waitlist) {
-    if (customer.metaData.ticketNumber.toString() === ticketNumber) return true
+function existsWithTicketNumber(ticketNumber, list) {
+  let customer
+  switch (list) {
+    case 'history':
+      console.log('history', ticketNumber)
+      customer = history.filter(
+        (customer) => customer.metaData.ticketNumber.toString() === ticketNumber.toString()
+      )
+
+      console.log(customer)
+      break
+
+    default:
+      customer = waitlist.filter(
+        (customer) => customer.metaData.ticketNumber.toString() === ticketNumber.toString()
+      )
+      console.log(customer)
+      break
   }
-  return false
+  return customer.length > 0
 }
 
 function removeCustomer(ticketNumber) {
@@ -50,6 +69,27 @@ function removeCustomer(ticketNumber) {
     (customer) => customer.metaData.ticketNumber.toString() === ticketNumber
   )
   customer[0].metaData.endTime = new Date().toUTCString()
+  customer[0].metaData.deleted = false
+  history.push(customer[0])
 }
 
-module.exports = { getWaitlist, saveCustomer, existsWithTicketNumber, removeCustomer }
+function getHistory() {
+  return history.filter((customer) => customer.metaData.deleted === false)
+}
+
+function removeHistory(ticketNumbers) {
+  for (const customer of history) {
+    if (ticketNumbers.indexOf(customer.metaData.ticketNumber) !== -1) {
+      customer.metaData.deleted = true
+    }
+  }
+}
+
+module.exports = {
+  getWaitlist,
+  saveCustomer,
+  existsWithTicketNumber,
+  removeCustomer,
+  getHistory,
+  removeHistory,
+}

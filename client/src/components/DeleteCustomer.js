@@ -31,9 +31,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     border: '1px solid grey',
   },
+  title: {
+    paddingTop: 15,
+    paddingBottom: 5,
+  },
 }))
 
-export default function DeleteCustomer({ ticketNumber }) {
+export default function DeleteCustomer({ ticketNumber, firstName }) {
   const classes = useStyles()
   const { removeCustomer } = useWaitlist()
   const [open, setOpen] = React.useState(false)
@@ -46,19 +50,23 @@ export default function DeleteCustomer({ ticketNumber }) {
     setOpen(false)
   }
 
-  const handleDelete = () => {
-    console.log('deleted')
+  const handleDelete = (e) => {
     removeCustomer(ticketNumber)
     setOpen(false)
   }
 
   const body = (
     <Paper className={classes.paper}>
-      <Typography variant='h6' id='delete-customer-card' gutterBottom align='center'>
-        Have you finished serving XX?
+      <Typography className={classes.title} variant='h6' id='delete-customer-card' align='center'>
+        Have you finished serving {firstName}?
       </Typography>
-      <Typography variant='body1' id='remove-customer-from-waitlist' gutterBottom align='center'>
-        Time waited: XX mins
+      <Typography
+        style={{ padding: '20px 0px' }}
+        variant='body1'
+        id='remove-customer-from-waitlist'
+        align='center'
+      >
+        {firstName} will be removed from the queue
       </Typography>
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <Button
@@ -81,13 +89,14 @@ export default function DeleteCustomer({ ticketNumber }) {
       </div>
     </Paper>
   )
-  console.log('rendered')
+
   return (
     <>
       <IconButton aria-label='delete' onClick={handleOpen}>
         <DeleteIcon />
       </IconButton>
       <Modal
+        disableEnforceFocus
         open={open}
         onClose={handleClose}
         aria-labelledby='delete-customer-card'

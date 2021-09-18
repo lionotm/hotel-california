@@ -3,6 +3,8 @@ const {
   saveCustomer,
   existsWithTicketNumber,
   removeCustomer,
+  getHistory,
+  removeHistory,
 } = require('../../models/waitlist.model')
 
 function httpGetWaitlist(req, res) {
@@ -21,7 +23,6 @@ function httpAddCustomer(req, res) {
 
   saveCustomer(customerData)
   return res.status(201).json(customerData)
-  console.log(customerData)
 }
 
 function httpRemoveCustomer(req, res) {
@@ -38,8 +39,36 @@ function httpRemoveCustomer(req, res) {
   })
 }
 
+function httpGetHistory(req, res) {
+  const history = getHistory()
+  return res.status(200).json(history)
+}
+
+function httpRemoveHistory(req, res) {
+  const ticketNumbers = req.body
+  let existsTicket = true
+  for (const ticket of ticketNumbers) {
+    if (!existsWithTicketNumber(ticket, 'history')) {
+      existsTicket = false
+      break
+    }
+  }
+  if (!existsTicket) {
+    return res.status(404).json({
+      error: 'Ticket not found',
+    })
+  }
+
+  removeHistory(ticketNumbers)
+  return res.status(200).json({
+    ok: true,
+  })
+}
+
 module.exports = {
   httpGetWaitlist,
   httpAddCustomer,
   httpRemoveCustomer,
+  httpGetHistory,
+  httpRemoveHistory,
 }

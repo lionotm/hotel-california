@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import DisplayHomePage from './pages/DisplayHomePage'
 import AddCustomer from './pages/AddCustomer'
+import History from './pages/History'
 import { WaitlistProvider } from './hooks/context'
 
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
@@ -31,6 +32,9 @@ function App() {
               </Route>
               <Route path='/addcustomer'>
                 <AddCustomer />
+              </Route>
+              <Route path='/history'>
+                <History />
               </Route>
             </Switch>
           </Layout>

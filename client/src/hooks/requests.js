@@ -18,7 +18,7 @@ async function httpAddCustomer(formData) {
       },
       body: JSON.stringify(formData),
     })
-  } catch (errpr) {
+  } catch (error) {
     return { ok: false }
   }
 }
@@ -28,9 +28,28 @@ async function httpRemoveCustomer(ticketNumber) {
     return await fetch(`${API_URL}/waitlist/${ticketNumber}`, {
       method: 'delete',
     })
-  } catch (err) {
+  } catch (error) {
     return { ok: false }
   }
 }
 
-export { httpGetWaitlist, httpAddCustomer, httpRemoveCustomer }
+async function httpGetHistory() {
+  const response = await fetch(`${API_URL}/waitlist/history`)
+  return await response.json()
+}
+
+async function httpRemoveHistory(ticketNumbers) {
+  try {
+    return await fetch(`${API_URL}/waitlist/history`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(ticketNumbers),
+    })
+  } catch (error) {
+    return { ok: false }
+  }
+}
+
+export { httpGetWaitlist, httpAddCustomer, httpRemoveCustomer, httpGetHistory, httpRemoveHistory }
