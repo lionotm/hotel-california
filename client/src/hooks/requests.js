@@ -4,6 +4,11 @@
 // for local testing
 const API_URL = 'http://localhost:8000/v1'
 
+async function httpGetMaxSlots() {
+  const response = await fetch(`${API_URL}/waitlist/maxslots`)
+  return await response.json()
+}
+
 async function httpGetWaitlist() {
   const response = await fetch(`${API_URL}/waitlist`)
   return await response.json()
@@ -52,4 +57,11 @@ async function httpRemoveHistory(ticketNumbers) {
   }
 }
 
-export { httpGetWaitlist, httpAddCustomer, httpRemoveCustomer, httpGetHistory, httpRemoveHistory }
+export {
+  httpGetWaitlist,
+  httpAddCustomer,
+  httpRemoveCustomer,
+  httpGetHistory,
+  httpRemoveHistory,
+  httpGetMaxSlots,
+}

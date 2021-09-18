@@ -32,6 +32,8 @@ const history = [
   },
 ]
 
+const maxSlots = 25
+
 function getWaitlist() {
   return waitlist.filter((customer) => customer.metaData.endTime === '')
 }
@@ -86,6 +88,7 @@ function removeHistory(ticketNumbers) {
 }
 
 module.exports = {
+  maxSlots,
   getWaitlist,
   saveCustomer,
   existsWithTicketNumber,

@@ -1,4 +1,5 @@
 const {
+  maxSlots,
   getWaitlist,
   saveCustomer,
   existsWithTicketNumber,
@@ -6,6 +7,10 @@ const {
   getHistory,
   removeHistory,
 } = require('../../models/waitlist.model')
+
+function httpGetMaxSlots(req, res) {
+  return res.status(200).json(maxSlots)
+}
 
 function httpGetWaitlist(req, res) {
   const waitlist = getWaitlist()
@@ -26,7 +31,7 @@ function httpAddCustomer(req, res) {
 }
 
 function httpRemoveCustomer(req, res) {
-  const ticketNumber = req.params.ticketNumber.toString()
+  const ticketNumber = req.params.ticketnumber.toString()
   const existsTicket = existsWithTicketNumber(ticketNumber)
   if (!existsTicket) {
     return res.status(404).json({
@@ -71,4 +76,5 @@ module.exports = {
   httpRemoveCustomer,
   httpGetHistory,
   httpRemoveHistory,
+  httpGetMaxSlots,
 }

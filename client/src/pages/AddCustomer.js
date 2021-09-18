@@ -53,7 +53,7 @@ const generateAvatarColor = () => {
 
 export default function AddCustomer() {
   const classes = useStyles()
-  const { waitlist, addCustomer } = useWaitlist()
+  const { maxSlots, waitlist, addCustomer } = useWaitlist()
   const [formData, setFormData] = React.useState(initialForm)
   const [isFilled, setIsFilled] = React.useState(initialFill)
   const [error, setError] = React.useState(false)
@@ -61,7 +61,7 @@ export default function AddCustomer() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (waitlist.length > 25) {
+    if (waitlist.length > maxSlots) {
       setIsNoSlots(true)
       setTimeout(() => {
         setIsNoSlots(false)
@@ -112,8 +112,6 @@ export default function AddCustomer() {
     }
   }
 
-  //Todo: assign a randomcolor during card creation and read from customer metadata
-  //todo: add error prop & helperText for validation
   return (
     <Container className={classes.container}>
       <Typography variant='h4' gutterBottom>

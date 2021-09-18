@@ -5,6 +5,7 @@ import {
   httpRemoveCustomer,
   httpGetHistory,
   httpRemoveHistory,
+  httpGetMaxSlots,
 } from './requests'
 
 import { pink, lime, indigo, orange, teal } from '@material-ui/core/colors'
@@ -15,7 +16,13 @@ WaitlistContext.displayName = 'WaitlistContext'
 
 function WaitlistProvider({ children }) {
   const [waitlist, setWaitlist] = React.useState([])
+  const [maxSlots, setMaxSlots] = React.useState(25)
   const [history, setHistory] = React.useState([])
+
+  const getMaxSlots = React.useCallback(async () => {
+    const fetchedMaxSlots = await httpGetMaxSlots()
+    setMaxSlots(fetchedMaxSlots)
+  }, [])
 
   const getWaitlist = React.useCallback(async () => {
     const fetchedWaitlist = await httpGetWaitlist()
@@ -52,6 +59,10 @@ function WaitlistProvider({ children }) {
   )
 
   React.useEffect(() => {
+    getMaxSlots()
+  }, [getMaxSlots])
+
+  React.useEffect(() => {
     getWaitlist()
   }, [getWaitlist])
 
@@ -59,7 +70,7 @@ function WaitlistProvider({ children }) {
     getHistory()
   }, [getHistory, waitlist])
 
-  const value = { waitlist, history, addCustomer, removeCustomer, removeHistory }
+  const value = { maxSlots, waitlist, history, addCustomer, removeCustomer, removeHistory }
 
   return <WaitlistContext.Provider value={value}>{children}</WaitlistContext.Provider>
 }

@@ -33,11 +33,9 @@ const containerStyles = {
   marginLeft: 'auto',
 }
 
-const maxQueueLength = 25
-
 export default function DisplayFreeSlots() {
-  const { waitlist } = useWaitlist()
-  const freeSlots = maxQueueLength - waitlist.length
+  const { maxSlots, waitlist } = useWaitlist()
+  const freeSlots = maxSlots - waitlist.length
 
   const status =
     freeSlots < 6
