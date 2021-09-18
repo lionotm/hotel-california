@@ -63,13 +63,17 @@ export default function History() {
 
   React.useEffect(() => {
     setFilter(
-      history.filter(
-        (customer) =>
-          customer.firstName.toLowerCase().includes(value.toLowerCase()) ||
-          customer.lastName.toLowerCase().includes(value.toLowerCase()) ||
-          customer.contactNumber.toString().toLowerCase().includes(value.toLowerCase()) ||
-          customer.notes?.toString().toLowerCase().includes(value.toLowerCase())
-      )
+      history.filter((customer) => {
+        const { firstName, lastName, contactNumber, notes } = customer
+        const name = firstName + ' ' + lastName
+        const filterValue = value.toLowerCase().trim()
+
+        return (
+          name?.toString().toLowerCase().includes(filterValue) ||
+          contactNumber?.toString().toLowerCase().includes(filterValue) ||
+          notes?.toString().toLowerCase().includes(filterValue)
+        )
+      })
     )
   }, [history, value])
 

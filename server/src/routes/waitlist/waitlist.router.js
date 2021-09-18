@@ -10,10 +10,10 @@ const {
 
 const waitlistRouter = express.Router()
 
-waitlistRouter.get('/waitlist', httpGetWaitlist)
-waitlistRouter.post('/waitlist', httpAddCustomer)
-waitlistRouter.delete('/waitlist/:ticketNumber', httpRemoveCustomer)
-waitlistRouter.get('/waitlist/history', httpGetHistory)
-waitlistRouter.post('/waitlist/history', httpRemoveHistory)
+waitlistRouter.get('/', httpGetWaitlist)
+waitlistRouter.post('/', httpAddCustomer)
+waitlistRouter.delete('/:ticketNumber', httpRemoveCustomer)
+waitlistRouter.get('/history', httpGetHistory)
+waitlistRouter.post('/history', httpRemoveHistory)
 
 module.exports = waitlistRouter
