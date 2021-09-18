@@ -3,9 +3,8 @@
 - Waitlist system designed to queue and dequeue customers
 - Client server architecture
 - Can be hosted in the cloud with containers.
-
-Client - React with Material UI  
-Server - Node.js with Express
+- Client: React with Material UI  
+- Server: Node.js with Express
 
 
 ## To get started
