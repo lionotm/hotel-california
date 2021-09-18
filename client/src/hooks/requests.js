@@ -1,8 +1,8 @@
-// for production
-// const API_URL = 'v1'
+// for production in containers
+const API_URL = 'v1'
 
 // for local testing
-const API_URL = 'http://localhost:8000/v1'
+// const API_URL = 'http://localhost:8000/v1'
 
 async function httpGetMaxSlots() {
   const response = await fetch(`${API_URL}/waitlist/maxslots`)

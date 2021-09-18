@@ -41,6 +41,7 @@ function getWaitlist() {
 function saveCustomer(customerData) {
   customerData.metaData.startTime = new Date().toUTCString()
   customerData.metaData.ticketNumber = uuidv4()
+  console.info('Customer added to waitlist', customerData)
   waitlist.push(customerData)
 }
 
@@ -48,19 +49,15 @@ function existsWithTicketNumber(ticketNumber, list) {
   let customer
   switch (list) {
     case 'history':
-      console.log('history', ticketNumber)
       customer = history.filter(
         (customer) => customer.metaData.ticketNumber.toString() === ticketNumber.toString()
       )
-
-      console.log(customer)
       break
 
     default:
       customer = waitlist.filter(
         (customer) => customer.metaData.ticketNumber.toString() === ticketNumber.toString()
       )
-      console.log(customer)
       break
   }
   return customer.length > 0
@@ -72,6 +69,7 @@ function removeCustomer(ticketNumber) {
   )
   customer[0].metaData.endTime = new Date().toUTCString()
   customer[0].metaData.deleted = false
+  console.info('Customer removed from waitlist', customer[0])
   history.push(customer[0])
 }
 
