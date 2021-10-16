@@ -10,7 +10,7 @@
 
 ## To get started
 
-To run this locally 💻
+### To run this locally 💻
 
 ```bash
 npm install
@@ -19,7 +19,7 @@ npm run deploy
 
 Note: Make sure you have a `.env` file in `./server` if you would like to define your own port
 
-To run with Docker 🐳  
+### To run with Docker 🐳  
 Please check if you have Docker installed locally
 
 ```bash
