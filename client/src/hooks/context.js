@@ -15,7 +15,7 @@ const WaitlistContext = React.createContext()
 WaitlistContext.displayName = 'WaitlistContext'
 
 function WaitlistProvider({ children }) {
-  const { data: waitlistData } = useQuery(WAITLIST)
+  const { data: waitlistData, refetch } = useQuery(WAITLIST)
   const { data: historyData } = useQuery(HISTORY)
   const [saveCustomer] = useMutation(SAVE_CUSTOMER, {
     refetchQueries: [WAITLIST, 'getWaitlist'],
@@ -37,8 +37,9 @@ function WaitlistProvider({ children }) {
           customerData: formData,
         },
       })
+      refetch()
     },
-    [saveCustomer]
+    [refetch, saveCustomer]
   )
 
   const removeCustomer = React.useCallback(

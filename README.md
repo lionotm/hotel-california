@@ -16,7 +16,7 @@ Please check if you have Docker installed locally
 
 ```bash
 docker build . -t hotel-california
-docker run -p 5000:80 hotel-california # map port 5000 in container to port 80 on Docker host
+docker run -p 5000:5000 hotel-california # map port 5000 in container to port 5000 on Docker host
 ```
 
 ## Requirements
