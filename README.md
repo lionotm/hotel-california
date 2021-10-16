@@ -3,9 +3,10 @@
 - Waitlist system designed to queue and dequeue customers
 - Client server architecture
 - Can be hosted in the cloud with containers.
-- Client: React with Material UI  
+- Client: React with Material UI
 - Server: Node.js with Express
-
+- Database: Mongo Atlas
+- API: RESTful & GraphQL
 
 ## To get started
 
@@ -24,6 +25,4 @@ docker build . -t hotel-california
 docker run -p 8000:8000 hotel-california
 ```
 
-## To add
-
-MongoDB for persistent storage
+Note: please check [Dockerfile](./Dockerfile) for the exposed port and map it accordingly. For instance, if `EXPOSE 5000` then `docker run -p 5000:5000 hotel-california`
