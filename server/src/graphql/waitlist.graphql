@@ -1,0 +1,42 @@
+type Query {
+  waitlist: [Waitlist]
+  history(isDeleted: Boolean): [Waitlist]
+}
+
+type Mutation {
+  saveCustomer(customerData: customerInput): Waitlist
+  removeCustomer(ticketNumber: String): Boolean
+  removeHistory(ticketNumbers: [String]): Boolean
+}
+
+input customerInput {
+  firstName: String
+  lastName: String
+  contactNumber: Int
+  notes: String
+  metaData: metaDataInput
+}
+
+input metaDataInput {
+  avatarColor: Int
+  startTime: String
+  endTime: String
+  ticketNumber: String
+  deleted: Boolean
+}
+
+type Waitlist {
+  firstName: String!
+  lastName: String!
+  contactNumber: Int!
+  notes: String
+  metaData: MetaData
+}
+
+type MetaData {
+  avatarColor: Int
+  startTime: String
+  endTime: String
+  ticketNumber: String
+  deleted: Boolean
+}

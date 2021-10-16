@@ -20,7 +20,7 @@ export default function DisplayCustomers({ waitlist }) {
       className='my-masonry-grid'
       columnClassName='my-masonry-grid_column'
     >
-      {waitlist.map((customer) => {
+      {waitlist?.map((customer) => {
         return (
           <div key={customer.metaData.ticketNumber}>
             <CustomerCard customer={customer} handleDelete={handleDelete} />

@@ -9,6 +9,8 @@ npm install
 npm run deploy
 ```
 
+Note: Make sure you have a `.env` file in `./server` defined with the desired port
+
 To run with Docker 🐳  
 Please check if you have Docker installed locally
 

@@ -16,7 +16,7 @@ export default function DisplayHomePage() {
 
   React.useEffect(() => {
     setFilter(
-      waitlist.filter((customer) => {
+      waitlist?.filter((customer) => {
         const { firstName, lastName, contactNumber, notes } = customer
         const name = firstName + ' ' + lastName
         const filterValue = value.toLowerCase().trim()
@@ -31,9 +31,9 @@ export default function DisplayHomePage() {
   }, [waitlist, value])
 
   const text =
-    waitlist.length === 1
-      ? `There is ${waitlist.length} customer in queue.`
-      : `There are ${waitlist.length} customers in queue.`
+    waitlist?.length === 1
+      ? `There is ${waitlist?.length} customer in queue.`
+      : `There are ${waitlist?.length} customers in queue.`
 
   return (
     <div>

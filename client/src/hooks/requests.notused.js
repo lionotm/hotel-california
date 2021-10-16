@@ -1,8 +1,10 @@
-// for production in containers
-const API_URL = 'v1'
+// RESTFUL implemention, not in use for this branch
 
-// for local testing
-// const API_URL = 'http://localhost:8000/v1'
+// For production in containers
+// const API_URL = 'graphql'
+
+// For local testing
+const API_URL = 'http://localhost:5000/v1'
 
 async function httpGetMaxSlots() {
   const response = await fetch(`${API_URL}/waitlist/maxslots`)
