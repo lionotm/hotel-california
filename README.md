@@ -9,26 +9,27 @@ npm install
 npm run deploy
 ```
 
-Note: Make sure you have a `.env` file in `./server` defined with the desired port
+Note: Make sure you have a `.env` file in `./server` if you would like to define your own port
 
 To run with Docker 🐳  
 Please check if you have Docker installed locally
 
 ```bash
 docker build . -t hotel-california
-docker run -p 8000:8000 hotel-california
+docker run -p 5000:5000 hotel-california
 ```
 
 ## Requirements
 
-- Enable all button clicks that will display the corresponding React components that you designed in Tutorial 3. You must remove the button for displayCustomers and display this component all the time. [Hint: Refer Chapter 4 (Event Handling) of textbook]
-  - Done
-- Code the form for adding a Customer. On clicking the submit button, the internal data structure on which you store the waitlist must be updated. At the same time, the displayCustomer component should be updated dynamically. If you coded using React, this will automatically happen. [Hint: Refer Chapter 4 of textbook]
-  - Done in `Add Customer` page
-- Likewise, code a form for deleting a Customer. On submit, the internal datastructure must be updated and in the front end, the displayCustomer should be automatically updated.
-  - Prefer to delete via buttons assigned to customer card/list as it feels more convenient and user-friendly, could do a form if it is really necessary but the backend logic remains the same
-- The number of free slots should also be automatically updated when you add or delete a customer.
-  - On top app bar, changes color as the queue gets busier. Max number of free slots are pulled from server to prevent client-side manipulation
-- Testing: You need to add/remove customers and see if the table and free slots are updated correctly. Corner cases such as underflow and overflow must also be tested.
-  - Overflow: Add customer form will throw error if user tries to add when free slots is 0.
-  - Underflow: Based on design, user has no button to delete if the entry is not present.
+- The intention is to host the waitlist database in the MongoDB server. Write a standalone script to test this logic using the MongoDB CLI. Your script must initialize the database and, further, test all CRUD operations. (Similar to scripts/trymongo.js in Example-06-03) [6 points]
+  - cd into `./server` and run `node scripts/trymongo.js`
+  - implemented just to test database, actual app uses another collection
+- Implement an API for the user to interact with the back end. Code the API using GraphQL (refer “The Create API” in Chapter 5) of textbook. This includes defining the graphql schema and the corresponding typeDefs and resolvers. Note that you now must implement APIs for performing the three operations (add, read, delete). [4 points]
+  - relevant files located in `./server/src/graphql`
+  - left RESTful implemention intact
+- Integrate the APIs created in the previous point with the front-end by changing the front-end (UI) code (i.e., App.jsx). (refer “The Create API” in Chapter 5). Note that you must integrate all three APIs mentioned before. [2 points]
+  - relevant files located in `./client/src/hooks`
+- Finally, Integrate the MongoDB back-end with the GraphQL resolvers. Note that multiple GraphQL resolver functions will want to access MongoDB. For example, you will have a minimum of three such functions, one corresponding to each of add, read, delete APIs. Do not forget to initialize the database schema before running your code. (refer Chapter6 – “Schema Initialization”, “Reading from MongoDB”, and “Writing to MongoDB”) [8 points]
+  - relevant files located in `./server/src/graphql`
+- Bonus: Separate the UI and API code into two different folders (and) run the UI and API at different ports. (Chapter 7 of textbook) [Bonus: 2 points]
+  - done with `./client` and `./server`
