@@ -98,7 +98,7 @@ export default function AddCustomer() {
         break
 
       case 'contact':
-        setFormData({ ...formData, contactNumber: value })
+        setFormData({ ...formData, contactNumber: +value })
         setIsFilled({ ...isFilled, contactNumber: !!value })
         break
 
@@ -155,6 +155,8 @@ export default function AddCustomer() {
           helperText={error && !isFilled.contactNumber && 'This field is required!'}
           value={formData.contactNumber}
           onChange={handleChange}
+          type='number'
+          onWheel={(e) => e.target.blur()}
         />
         <TextField
           id='notes'

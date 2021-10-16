@@ -34,8 +34,8 @@ const containerStyles = {
 }
 
 export default function DisplayFreeSlots() {
-  const { maxSlots, waitlist } = useWaitlist()
-  const freeSlots = maxSlots - waitlist.length
+  const { waitlist } = useWaitlist()
+  const freeSlots = 25 - waitlist?.length
 
   const status =
     freeSlots < 6
