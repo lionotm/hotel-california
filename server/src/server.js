@@ -21,6 +21,7 @@ const PORT = process.env.PORT || 5000
 
 async function startApolloServer() {
   const app = express()
+
   const httpServer = http.createServer(app)
 
   // graphql api
@@ -49,7 +50,8 @@ async function startApolloServer() {
   app.use('/v1', api)
   app.use(express.static(path.join(__dirname, '..', 'public')))
   app.get('/*', (req, res) => {
-    res.sendFile(express.static(path.join(__dirname, '..', 'public', 'index.html')))
+    console.log(path.join(__dirname, '..', 'public', 'index.html'))
+    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
   })
 
   await mongoConnect()

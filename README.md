@@ -16,7 +16,7 @@ Please check if you have Docker installed locally
 
 ```bash
 docker build . -t hotel-california
-docker run -p 5000:5000 hotel-california
+docker run -p 5000:80 hotel-california # map port 5000 in container to port 80 on Docker host
 ```
 
 ## Requirements
@@ -30,6 +30,6 @@ docker run -p 5000:5000 hotel-california
 - Integrate the APIs created in the previous point with the front-end by changing the front-end (UI) code (i.e., App.jsx). (refer “The Create API” in Chapter 5). Note that you must integrate all three APIs mentioned before. [2 points]
   - relevant files located in `./client/src/hooks`
 - Finally, Integrate the MongoDB back-end with the GraphQL resolvers. Note that multiple GraphQL resolver functions will want to access MongoDB. For example, you will have a minimum of three such functions, one corresponding to each of add, read, delete APIs. Do not forget to initialize the database schema before running your code. (refer Chapter6 – “Schema Initialization”, “Reading from MongoDB”, and “Writing to MongoDB”) [8 points]
-  - relevant files located in `./server/src/graphql`
+  - relevant files located in `./server/src/graphql`, `./server/src/services`
 - Bonus: Separate the UI and API code into two different folders (and) run the UI and API at different ports. (Chapter 7 of textbook) [Bonus: 2 points]
   - done with `./client` and `./server`
