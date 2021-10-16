@@ -5,10 +5,10 @@ import App from './App'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 // for containers in production
-// const API_URL = 'graphql'
+const API_URL = 'graphql'
 
 // for local testing
-const API_URL = 'http://localhost:5000/graphql'
+// const API_URL = 'http://localhost:5000/graphql'
 
 const client = new ApolloClient({
   uri: API_URL,
