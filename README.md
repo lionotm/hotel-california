@@ -7,6 +7,7 @@
 ### To run this locally 💻
 
 ```bash
+npm install -g expo-cli 
 npm install
 npm run watch
 ```
